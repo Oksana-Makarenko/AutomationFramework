@@ -16,7 +16,7 @@ namespace FWRun.Helpers
         public static bool WaitUntilElementIsPresent(this IWebDriver driver, By by, int timeout = 10)
         {
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeout));
-            return wait.Until(d => d.WaitUntilElementIsPresent(by));
+            return wait.Until(webDriver => webDriver.WaitUntilElementIsPresent(by));
         }
     }
 }
