@@ -12,7 +12,8 @@ namespace FWRun.Pages
             this._driver = driver;
         }
 
-        public IWebElement SighIn => _driver.FindElement(By.ClassName("login"));
+        public IWebElement SighIn 
+            => _driver.FindElement(By.ClassName("login"));
 
         public AuthenticationPage OpenAuthenticationPage()
         {

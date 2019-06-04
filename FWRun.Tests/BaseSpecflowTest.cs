@@ -1,29 +1,30 @@
-﻿using System;
-using System.Configuration;
-using FWRun.Helpers;
+﻿using FWRun.Helpers;
 using FWRun.Pages;
-using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.IE;
+using System;
+using System.Configuration;
+using TechTalk.SpecFlow;
 
-namespace FWRun
+namespace FWRun.Tests
 {
-    public abstract class TestsFunctional
+    [Binding]
+    public class BaseSpecflowTest
     {
         private static IWebDriver _driver;
         private string URL = ConfigurationManager.AppSettings["environmentUrl"];
         private MainPage _mainPage;
         private Browser _browser;
 
-        [OneTimeSetUp]
-        protected void OneTimeSetUp()
+        [BeforeFeature]
+        public void BeforeFeature()
         {
             _browser = (Browser)Enum.Parse(typeof(Browser), ConfigurationManager.AppSettings["browser"]);
         }
 
-        [SetUp]
-        protected void SetUp()
+        [BeforeScenario]
+        public void BeforeScenario()
         {
             switch (_browser)
             {
@@ -42,8 +43,8 @@ namespace FWRun
             _mainPage = new MainPage(_driver);
         }
 
-        [TearDown]
-        protected void CloseBrowser()
+        [AfterScenario]
+        public void AfterScenario()
         {
             _driver.Close();
             _driver.Quit();

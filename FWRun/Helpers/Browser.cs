@@ -2,7 +2,7 @@
 
 namespace FWRun.Helpers
 {
-    enum Browser
+    public enum Browser
     {
         [Description("IE")]
         IE,
